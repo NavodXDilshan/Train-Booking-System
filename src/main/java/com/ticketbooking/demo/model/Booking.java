@@ -9,8 +9,8 @@ import java.util.Date;
 @Setter
 public class Booking {
     private long id;
-    private long seat_id;
-    private long coach_id;
+    private long seatId;
+    private long coachId;
     private String passengerName;
     private String passengerContact;
     private String passengerNIC;

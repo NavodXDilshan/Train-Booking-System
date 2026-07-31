@@ -5,14 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Seat {
+public class Departure {
     private long id;
     private long coachId;
-    private int seatNumber;
-    private String type;
+    private Date departureTime;
+    private int originOrder;
+    private int destinationOrder;
 
 }

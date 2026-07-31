@@ -17,5 +17,5 @@ public class Fare {
     private float baseFare;
     private float farePerSegment;
     private Date effectiveFrom;
-    private String coach_type;
+    private String coachType;
 }
