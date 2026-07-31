@@ -36,6 +36,4 @@ public class Coach {
     private int seatCount;
     @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL)
     private List<Seat> seats;
-
-
 }
