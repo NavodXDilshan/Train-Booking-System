@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/coach")
 public class CoachController {
 
-    @GetMapping("/")
-    public ResponseEntity<>getAllCoaches(){
+//    @GetMapping("/")
+//    public ResponseEntity<>getAllCoaches(){
+//
+//    }
 
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<>getCoachById(@PathVariable long id){
-
-    }
-
-    @PostMapping("/add")
-    public ResponseEntity<>addCoach(@RequestBody Coach coach){
-
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<>getCoachById(@PathVariable long id){
+//
+//    }
+//
+//    @PostMapping("/add")
+//    public ResponseEntity<>addCoach(@RequestBody Coach coach){
+//
+//    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void>deleteCoachById(@PathVariable long id){

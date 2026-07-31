@@ -1,5 +1,6 @@
 package com.ticketbooking.demo.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,11 +13,22 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name="departures")
 public class Departure {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long coachId;
-    private Date departureTime;
+    @ManyToOne
+    @JoinColumn(name = "train_id", nullable = false)
+    private Train train;
+    @Column(name = "departure_time",nullable = false)
+    private LocalDateTime departureTime;
+    @Column(name="origin_order",nullable = false)
     private int originOrder;
+    @Column(name="destination_order",nullable = false)
     private int destinationOrder;
+    @Column(name="status",nullable = false)
+    private String status;
 
 }

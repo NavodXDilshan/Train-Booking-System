@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/stations")
 public class StationController {
-    @GetMapping("/")
-    public ResponseEntity<>findAllStations(){
-
-    }
-
-    @PostMapping("/add")
-    public ResponseEntity<>addNewStation(@RequestBody Station station){
-
-    }
+//    @GetMapping("/")
+//    public ResponseEntity<>findAllStations(){
+//
+//    }
+//
+//    @PostMapping("/add")
+//    public ResponseEntity<>addNewStation(@RequestBody Station station){
+//
+//    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void>deleteStationById(@PathVariable long id){
