@@ -1,17 +1,26 @@
 package com.ticketbooking.demo.controller;
 
+import com.ticketbooking.demo.Repository.CoachRepository;
 import com.ticketbooking.demo.model.Coach;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/coach")
 public class CoachController {
-
-//    @GetMapping("/")
-//    public ResponseEntity<>getAllCoaches(){
-//
-//    }
+    CoachRepository coachRepository;
+    @Autowired
+    public CoachController(CoachRepository coachRepository){
+        this.coachRepository = coachRepository;
+    }
+    @GetMapping("/")
+    public ResponseEntity<Iterable<Coach>>getAllCoaches(){
+        Iterable<Coach> coachList = coachRepository.findAll();
+        return ResponseEntity.ok(coachList);
+    }
 
 //    @GetMapping("/{id}")
 //    public ResponseEntity<>getCoachById(@PathVariable long id){
