@@ -1,5 +1,6 @@
 package com.ticketbooking.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class Seat {
     private Long id;
     @ManyToOne
     @JoinColumn(name="coach_id",nullable = false)
+    @JsonIgnore
     private Coach coach;
     @Column(name = "seat_number",nullable = false)
     private int seatNumber;

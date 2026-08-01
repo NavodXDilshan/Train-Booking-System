@@ -1,5 +1,6 @@
 package com.ticketbooking.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Departure {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "train_id", nullable = false)
+    @JsonIgnore
     private Train train;
     @Column(name = "departure_time",nullable = false)
     private LocalDateTime departureTime;
