@@ -56,6 +56,9 @@ public class Booking {
     private LocalDateTime createdAt;
     @Column(nullable = false, name="travel_date")
     private  LocalDateTime travelDate;
-
+    @Column(nullable = false, name="status")
+    private boolean status;
+    @Column(nullable = false, name="code")
+    private String code;
 
 }
