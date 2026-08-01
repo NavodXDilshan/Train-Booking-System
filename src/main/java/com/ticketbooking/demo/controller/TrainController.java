@@ -29,7 +29,7 @@ public class TrainController {
         List<Train> trainList = trainRepository.findAll();
         return ResponseEntity.ok(trainList);
     }
-    @GetMapping("/train/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Train> findTrainById(@PathVariable long id){
         Optional<Train> train = trainRepository.findById(id);
         if(train.isPresent()){

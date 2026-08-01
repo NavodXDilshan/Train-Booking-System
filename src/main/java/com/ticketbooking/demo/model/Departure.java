@@ -22,7 +22,7 @@ public class Departure {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "train_id", nullable = false)
-    @JsonIgnore
+
     private Train train;
     @Column(name = "departure_time",nullable = false)
     private LocalDateTime departureTime;

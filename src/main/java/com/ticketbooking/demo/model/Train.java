@@ -1,5 +1,6 @@
 package com.ticketbooking.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,5 +25,6 @@ public class Train {
     @OneToMany(mappedBy = "train", cascade = CascadeType.ALL)
     private List<Coach> coaches;
     @OneToMany(mappedBy = "train")
+    @JsonIgnore
     private List<Departure> departures;
 }
