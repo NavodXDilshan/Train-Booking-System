@@ -18,7 +18,7 @@ import java.util.List;
 public class Train {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(nullable = false,name="name")
     private String name;
     @OneToMany(mappedBy = "train", cascade = CascadeType.ALL)

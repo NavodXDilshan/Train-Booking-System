@@ -12,7 +12,7 @@ import lombok.*;
 public class Station {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name="name",nullable = false,length=100)
     private String name;
     @Column(name="code",nullable = false,unique = true,length=10)

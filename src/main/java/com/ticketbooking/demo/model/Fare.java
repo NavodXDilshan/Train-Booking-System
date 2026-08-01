@@ -17,10 +17,9 @@ import java.util.Date;
 @Entity
 @Table(name="fares")
 public class Fare {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(nullable = false, name="base_fare",precision = 10, scale = 2)
     private BigDecimal baseFare;
     @Column(nullable = false, name="fare_per_segment",precision = 10, scale = 2)

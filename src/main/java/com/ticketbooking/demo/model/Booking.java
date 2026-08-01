@@ -34,11 +34,13 @@ import java.util.Date;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(nullable = false, name="seat_id")
     private long seatId;
     @Column(nullable = false, name="coach_id")
     private long coachId;
+    @Column(nullable = false, name="train_id")
+    private long trainId;
     @Column(nullable = false, name="passenger_name")
     private String passengerName;
     @Column(nullable = false, name="passenger_contact")

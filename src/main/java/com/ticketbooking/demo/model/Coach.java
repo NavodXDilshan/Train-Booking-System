@@ -24,7 +24,7 @@ import java.util.List;
 public class Coach {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "train_id", nullable = false)
     private Train train;

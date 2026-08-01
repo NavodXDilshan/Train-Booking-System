@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 public class CoachDto {
-    private long id;
+    private Long id;
     @NotNull(message = "Train ID is required")
     private Long trainId;
     @NotNull(message = "Coach number is required")
