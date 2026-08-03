@@ -45,6 +45,8 @@ public class BookingService {
     public Booking addBooking(BookingDto dto){
 
         try{
+            BigDecimal journeyFare = fareService.calculateFare("RESERVED",
+                    dto.getDestinationOrder(),dto.getOriginOrder());
             Booking booking = new Booking();
 
             if(dto.getDirection().equals("REVERSE")){
@@ -61,7 +63,7 @@ public class BookingService {
             booking.setPassengerName(dto.getPassengerName());
             booking.setPassengerContact(dto.getPassengerContact());
             booking.setPassengerNIC(dto.getPassengerNIC());
-            booking.setFareAmount(BigDecimal.valueOf(1000.00));
+            booking.setFareAmount(journeyFare);
             booking.setTravelDate(dto.getTravelDate());
             booking.setDepartureId(dto.getDepartureId());
             booking.setVerified(false);

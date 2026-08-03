@@ -3,6 +3,7 @@ package com.ticketbooking.demo.controller;
 import com.ticketbooking.demo.Repository.FareRepository;
 import com.ticketbooking.demo.dto.FareDto;
 import com.ticketbooking.demo.model.Fare;
+import com.ticketbooking.demo.model.Station;
 import com.ticketbooking.demo.service.FareService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,15 @@ public class FareController {
     @PostMapping("/add")
     public ResponseEntity<Fare> addFare(@Valid @RequestBody FareDto fareDto){
         return ResponseEntity.ok(fareService.addFare(fareDto));
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Fare> deleteFareById(@PathVariable long id){
+        Optional<Fare> fare = fareRepository.findById(id);
+        if(fare.isPresent()){
+            fareRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

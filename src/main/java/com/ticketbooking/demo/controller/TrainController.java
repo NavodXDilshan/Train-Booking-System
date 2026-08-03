@@ -51,4 +51,14 @@ public class TrainController {
         return ResponseEntity.ok(train);
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<Train> deleteTrainById(@PathVariable long id){
+        Optional<Train> train = trainRepository.findById(id);
+        if(train.isPresent()){
+            trainRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }

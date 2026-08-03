@@ -3,6 +3,7 @@ package com.ticketbooking.demo.controller;
 import com.ticketbooking.demo.Repository.StationRepository;
 import com.ticketbooking.demo.dto.StationDto;
 import com.ticketbooking.demo.model.Station;
+import com.ticketbooking.demo.model.Train;
 import com.ticketbooking.demo.service.StationService;
 import jakarta.validation.Valid;
 import lombok.Getter;
@@ -47,7 +48,15 @@ public class StationController {
         return ResponseEntity.noContent().build();
     }
 
-
+    @DeleteMapping("{id}")
+    public ResponseEntity<Station> deleteTrainById(@PathVariable long id){
+        Optional<Station> station = stationRepository.findById(id);
+        if(station.isPresent()){
+            stationRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 
 
 }
