@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/stations")
+@RequestMapping("/station")
 public class StationController {
 
     private final StationRepository stationRepository;

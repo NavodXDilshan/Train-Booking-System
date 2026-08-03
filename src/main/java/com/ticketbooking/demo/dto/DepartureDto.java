@@ -24,6 +24,8 @@ public class DepartureDto {
     @NotNull(message = "Destination point is required")
     @Min(value=0,message = "Destination point has to be positive")
     private Integer destinationOrder;
+    @NotNull(message = "Direction is required")
+    private String direction;
     @NotBlank(message = "Status is required")
     private String status;
 }

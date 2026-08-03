@@ -21,6 +21,10 @@ public class BookingDto {
     @NotNull(message = "TrainId is required")
     @Min(value = 0,message = "TrainId must be positive")
     private Long trainId;
+    @NotNull(message = "DepartureId is required")
+    private Long departureId;
+    @NotNull(message = "Seat number is required")
+    private Long seatNumber;
     @NotBlank(message = "Passenger name is required")
     private String passengerName;
     @NotBlank(message = "Passenger contact number is required")
@@ -36,6 +40,9 @@ public class BookingDto {
     private Integer destinationOrder;
     @NotNull(message = "Departure date is required")
     private  LocalDateTime travelDate;
-    @NotBlank(message = "Code is required")
-    private String code;
+    @NotNull(message = "Direction is required")
+    private String direction;
+
+//    @NotBlank(message = "Code is required")
+//    private String code;
 }

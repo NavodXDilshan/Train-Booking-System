@@ -16,31 +16,21 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(
-    name="bookings",
-    uniqueConstraints = {
-        @UniqueConstraint(
-            columnNames = {
-                "seat_id",
-                "coach_id",
-                "booking_at",
-                "origin_order",
-                "destination_order",
-                "travel_date"
-            }
-        )
-    }
-)
+@Table(name="bookings")
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, name="seat_id")
     private long seatId;
+    @Column(nullable = false, name="seat_number")
+    private long seatNumber;
     @Column(nullable = false, name="coach_id")
     private long coachId;
     @Column(nullable = false, name="train_id")
     private long trainId;
+    @Column(nullable = false, name="departure_id")
+    private long departureId;
     @Column(nullable = false, name="passenger_name")
     private String passengerName;
     @Column(nullable = false, name="passenger_contact")
@@ -58,9 +48,15 @@ public class Booking {
     private LocalDateTime createdAt;
     @Column(nullable = false, name="travel_date")
     private  LocalDateTime travelDate;
-    @Column(nullable = false, name="status")
-    private boolean status;
-    @Column(nullable = false, name="code")
-    private String code;
+//    @Column(nullable = false, name="status")
+//    private boolean status;
+    @Column(nullable = false,name = "is_verified",columnDefinition = "boolean default false")
+    private boolean verified = false;
+    @Column(nullable = false, name="direction")
+    private String direction;
+    @Transient
+    private Object journeyRange;
+//    @Column(nullable = false, name="code")
+//    private String code;
 
 }

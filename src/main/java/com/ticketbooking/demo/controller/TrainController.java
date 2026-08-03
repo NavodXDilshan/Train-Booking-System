@@ -1,6 +1,7 @@
 package com.ticketbooking.demo.controller;
 
 import com.ticketbooking.demo.Repository.TrainRepository;
+import com.ticketbooking.demo.dto.TrainCreateRequest;
 import com.ticketbooking.demo.dto.TrainDto;
 import com.ticketbooking.demo.model.Train;
 import com.ticketbooking.demo.service.TrainService;
@@ -43,5 +44,11 @@ public class TrainController {
         return ResponseEntity.ok(trainService.addTrain(trainDto));
     }
 
+
+    @PostMapping("/addAll")
+    public ResponseEntity<Train> addTrain(@RequestBody TrainCreateRequest request) {
+        Train train = trainService.createTrain(request);
+        return ResponseEntity.ok(train);
+    }
 
 }

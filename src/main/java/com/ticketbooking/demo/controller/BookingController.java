@@ -2,6 +2,8 @@ package com.ticketbooking.demo.controller;
 
 import com.ticketbooking.demo.Repository.BookingRepository;
 import com.ticketbooking.demo.dto.BookingDto;
+import com.ticketbooking.demo.dto.BookingFilterResponse;
+import com.ticketbooking.demo.dto.BookingRequest;
 import com.ticketbooking.demo.model.Booking;
 import com.ticketbooking.demo.service.BookingService;
 import jakarta.validation.Valid;
@@ -37,6 +39,13 @@ public class BookingController {
             return ResponseEntity.ok(booking.get());
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/departure")
+    public ResponseEntity<BookingFilterResponse> getBookingsByDepartureDateAndId(@RequestBody BookingRequest bookingRequest){
+        BookingFilterResponse bookingList = bookingService.filterByJourneySegments(bookingRequest);
+
+        return ResponseEntity.ok(bookingList);
     }
 
     @PostMapping("/add")

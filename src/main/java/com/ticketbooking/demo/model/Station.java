@@ -1,5 +1,6 @@
 package com.ticketbooking.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ public class Station {
     private String name;
     @Column(name="code",nullable = false,unique = true,length=10)
     private String code;
+
     @Column(name="route_order",nullable = false)
     private int routeOrder;
 }

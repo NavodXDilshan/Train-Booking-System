@@ -22,7 +22,6 @@ public class Departure {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "train_id", nullable = false)
-
     private Train train;
     @Column(name = "departure_time",nullable = false)
     private LocalDateTime departureTime;
@@ -30,6 +29,8 @@ public class Departure {
     private int originOrder;
     @Column(name="destination_order",nullable = false)
     private int destinationOrder;
+    @Column(name="direction",nullable = false)
+    private String direction;
     @Column(name="status",nullable = false)
     private String status;
 
