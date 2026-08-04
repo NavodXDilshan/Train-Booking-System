@@ -57,6 +57,7 @@ This project is a typical client-server monolith. After weighing the project req
 - **User tab:** view scheduled departures, select one, check seat availability for a specific leg of the journey, and make a reservation.
 - **Admin tab:** exposes CRUD operations to manage Trains (with Coaches and Seats), Stations, Departures, Fares, and Revenue details. Changes here are reflected immediately in the user tab.
 - Some UI components were styled with AI assistance.
+- State management is **not** implemented. 
 
 ## Extra Credit Features
 
