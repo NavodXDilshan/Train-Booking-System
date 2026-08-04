@@ -16,9 +16,9 @@ export default function FareForm() {
   const [farePerSegment, setFarePerSegment] = useState<string>("")
   const [effectiveFrom, setEffectiveFrom] = useState("")
   const [coachType, setCoachType] = useState(COACH_TYPES[0])
-
   const [submitting, setSubmitting] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+  const API = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,9 +40,6 @@ export default function FareForm() {
       return
     }
 
-    // <input type="datetime-local"> yields "2026-08-03T14:30" (no seconds).
-    // Append ":00" so Jackson's LocalDateTime parsing gets a full local
-    // date-time string ("2026-08-03T14:30:00").
     const normalizedEffectiveFrom =
       effectiveFrom.length === 16 ? `${effectiveFrom}:00` : effectiveFrom
 
@@ -55,7 +52,7 @@ export default function FareForm() {
 
     setSubmitting(true)
     try {
-      const response = await fetch("http://localhost:8080/fare/add", {
+      const response = await fetch(`${API}/fare/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

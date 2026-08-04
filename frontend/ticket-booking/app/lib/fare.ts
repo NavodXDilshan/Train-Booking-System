@@ -11,7 +11,8 @@ export interface Fare {
 
 
 export async function getFares(): Promise<Fare[]> {
-  const res = await fetch(`http://localhost:8080/fare/`, {
+  const API = process.env.NEXT_PUBLIC_API_URL;
+  const res = await fetch(`${API}/fare/`, {
     cache: "no-store",
   });
 

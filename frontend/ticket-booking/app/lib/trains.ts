@@ -21,7 +21,8 @@ export interface Train {
 
 
 export async function getTrains(): Promise<Train[]> {
-  const res = await fetch(`http://localhost:8080/train/`, {
+  const API = process.env.NEXT_PUBLIC_API_URL;
+  const res = await fetch(`${API}/train/`, {
     cache: "no-store",
   });
 

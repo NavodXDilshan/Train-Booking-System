@@ -55,9 +55,9 @@ export default function DepartureForm() {
   const [error, setError] = useState<string | null>(null)
   const [stations, setStations] = useState<Station[]>([])
   const [trains, setTrains] = useState<Train[]>([])
-
   const [submitting, setSubmitting] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+  const API = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     let cancelled = false
@@ -146,7 +146,7 @@ export default function DepartureForm() {
 
     setSubmitting(true)
     try {
-      const response = await fetch("http://localhost:8080/departure/add", {
+      const response = await fetch(`${API}/departure/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -52,9 +52,9 @@ const editDeparture = () => {
   const [stations, setStations] = useState<Station[]>([])
   const [trains, setTrains] = useState<Train[]>([])
   const [loading, setLoading] = useState<boolean>(false);
-
   const [submitting, setSubmitting] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+  const API = process.env.NEXT_PUBLIC_API_URL;
 
   const getStationRouteOrder = (id: string): number | null => {
     const found = stations.find((s) => String(s.id) === id)
@@ -97,7 +97,7 @@ const editDeparture = () => {
 
     setSubmitting(true)
     try {
-      const response = await fetch("http://localhost:8080/departure/add", {
+      const response = await fetch(`${API}/departure/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

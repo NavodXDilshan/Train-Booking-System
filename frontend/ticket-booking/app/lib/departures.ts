@@ -28,8 +28,17 @@ export interface Departure {
   status: string;
 }
 
+function getApiBaseUrl() {
+  
+  if (typeof window === "undefined") {
+    return "http://backend:8080";
+  }
+  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+}
+
 export async function getDepartures(): Promise<Departure[]> {
-  const res = await fetch("http://localhost:8080/departure/", {
+  const API = getApiBaseUrl();
+  const res = await fetch(`${API}/departure/`, {
     cache: "no-store",
   });
 

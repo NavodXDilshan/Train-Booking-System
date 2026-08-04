@@ -22,6 +22,7 @@ export default function TrainForm() {
   ])
   const [submitting, setSubmitting] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+  const API = process.env.NEXT_PUBLIC_API_URL;
 
   const handleCoachCountChange = (value: number) => {
     const count = Number.isNaN(value) || value < 0 ? 0 : value
@@ -65,7 +66,7 @@ export default function TrainForm() {
 
     setSubmitting(true)
     try {
-      const response = await fetch("http://localhost:8080/train/addAll", {
+      const response = await fetch(`${API}/train/addAll`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -13,6 +13,7 @@ const stationlist = () => {
   const [error, setError] = useState<string | null>(null);
   const [station, setStation] = useState<Station[]>([]);
   const [message, setMessage] = useState<string>("");
+  const API = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     let cancelled = false;
@@ -42,7 +43,7 @@ const stationlist = () => {
       return;
 
     try{
-      const response = await fetch(`http://localhost:8080/station/${stationId}`, {
+      const response = await fetch(`${API}/station/${stationId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

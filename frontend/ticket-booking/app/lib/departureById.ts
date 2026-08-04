@@ -30,7 +30,8 @@ export interface Departure {
 }
 
 export async function getDepartureById(depId: string | number): Promise<Departure> {
-  const res = await fetch(`http://localhost:8080/departure/${depId}`, {
+  const API = process.env.NEXT_PUBLIC_API_URL;
+  const res = await fetch(`${API}/departure/${depId}`, {
     cache: "no-store",
   });
 

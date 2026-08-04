@@ -21,7 +21,8 @@ export interface Booking {
 
 
 export async function getBookings(): Promise<Booking[]> {
-  const res = await fetch(`http://localhost:8080/book/`, {
+  const API = process.env.NEXT_PUBLIC_API_URL;
+  const res = await fetch(`${API}/book/`, {
     cache: "no-store",
   });
 

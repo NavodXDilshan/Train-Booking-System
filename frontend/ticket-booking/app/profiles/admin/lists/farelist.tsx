@@ -15,7 +15,8 @@ const farelist = () => {
     const [error, setError] = useState<string | null>(null);
     const [fares, setFares] = useState<Fare[]>([]);
     const [message, setMessage] = useState<string>("");
-  
+    const API = process.env.NEXT_PUBLIC_API_URL;
+
     useEffect(() => {
       let cancelled = false;
   
@@ -44,7 +45,7 @@ const farelist = () => {
         return;
   
       try{
-        const response = await fetch(`http://localhost:8080/fare/${fareId}`, {
+        const response = await fetch(`${API}/fare/${fareId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

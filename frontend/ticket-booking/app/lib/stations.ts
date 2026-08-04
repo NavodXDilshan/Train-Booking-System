@@ -7,8 +7,16 @@ export interface Station {
   routeOrder: number;
 }
 
+function getApiBaseUrl() {
+  
+  if (typeof window === "undefined") {
+    return "http://backend:8080";
+  }
+  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+}
 export async function getStations(): Promise<Station[]> {
-  const res = await fetch("http://localhost:8080/station/", {
+  const API = getApiBaseUrl();
+  const res = await fetch(`${API}/station/`, {
     cache: "no-store",
   });
 

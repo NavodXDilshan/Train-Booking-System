@@ -40,6 +40,7 @@ const stationlist = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [selectedDeparture, setSelectedDeparture] = useState<Departure | null>(null);
   const [selectedStatus, setSelectedStatus] = useState<string>("");
+  const API = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     let cancelled = false;
@@ -69,7 +70,7 @@ const stationlist = () => {
       return;
 
     try{
-      const response = await fetch(`http://localhost:8080/departure/${departureId}`, {
+      const response = await fetch(`${API}/departure/${departureId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +94,7 @@ const stationlist = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/departure/edit`,
+        `${API}/departure/edit`,
         {
           method: "PATCH",
           headers: {

@@ -28,6 +28,7 @@ const TrainList = () => {
   const [error, setError] = useState<string | null>(null);
   const [trains, setTrains] = useState<Train[]>([]);
   const [message, setMessage] = useState<string>("");
+  const API = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     let cancelled = false;
@@ -57,7 +58,7 @@ const TrainList = () => {
       return;
 
     try{
-      const response = await fetch(`http://localhost:8080/train/${trainId}`, {
+      const response = await fetch(`${API}/train/${trainId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

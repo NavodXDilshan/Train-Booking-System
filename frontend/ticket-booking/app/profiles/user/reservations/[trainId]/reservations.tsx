@@ -75,6 +75,7 @@ const seatKey = (coachId: number, seatId: number) => `${coachId}-${seatId}`
 
 export default function Reservations() {
   const params = useParams() as { trainId: string }
+  const API = process.env.NEXT_PUBLIC_API_URL;
   const { trainId } = params
   const [origin, setOrigin] = useState<number | null>(null)
   const [destination, setDestination] = useState<number | null>(null)
@@ -199,7 +200,7 @@ export default function Reservations() {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/book/add", {
+      const response = await fetch(`${API}/book/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -254,7 +255,7 @@ export default function Reservations() {
     }
 
      try {
-      const response = await fetch("http://localhost:8080/book/departure", {
+      const response = await fetch(`${API}/book/departure`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

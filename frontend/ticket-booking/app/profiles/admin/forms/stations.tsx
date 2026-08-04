@@ -12,9 +12,9 @@ export default function StationForm() {
   const [name, setName] = useState("")
   const [code, setCode] = useState("")
   const [routeOrder, setRouteOrder] = useState<number>(0)
-
   const [submitting, setSubmitting] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+  const API = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -37,7 +37,7 @@ export default function StationForm() {
 
     setSubmitting(true)
     try {
-      const response = await fetch("http://localhost:8080/station/add", {
+      const response = await fetch(`${API}/station/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
