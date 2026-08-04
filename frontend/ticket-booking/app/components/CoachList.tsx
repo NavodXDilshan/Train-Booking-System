@@ -16,6 +16,7 @@ interface Coach {
   seats: Seat[]
 }
 
+//created a unique key forgetting the seatId is already unique
 const seatKey = (coachId: number, seatId: number) => `${coachId}-${seatId}`
 
 interface CoachListProps {

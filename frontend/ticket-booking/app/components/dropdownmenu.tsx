@@ -40,8 +40,6 @@ const DropdownMenu: React.FC<DropDownMenuProps> = ({
     </svg>
   )
 
-  // Only fall back to the placeholder title when nothing has been selected yet.
-  // (select === 0 must still show its label, not the title.)
   const hasSelection = select !== null && select !== undefined
   const displayLabel =
     hasSelection && labels
@@ -70,8 +68,7 @@ const DropdownMenu: React.FC<DropDownMenuProps> = ({
         className={`
           ${styleItem}
           min-w-[var(--button-width)]   
-          mt-1.5 
-          bg-white border border-gray-200 rounded-lg 
+          mt-1.5 bg-white border border-gray-200 rounded-lg 
           shadow-lg ring-1 ring-black/5
           transition duration-100 ease-out
           data-[closed]:opacity-0 data-[closed]:scale-95 data-[closed]:-translate-y-1
