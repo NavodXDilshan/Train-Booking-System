@@ -1,0 +1,7 @@
+package com.ticketbooking.demo.exception;
+
+public class SeatAlreadyBookedException extends RuntimeException {
+    public SeatAlreadyBookedException(String message) {
+        super(message);
+    }
+}

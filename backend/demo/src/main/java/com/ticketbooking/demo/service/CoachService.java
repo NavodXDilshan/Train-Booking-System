@@ -29,6 +29,7 @@ public class CoachService {
                 .orElseThrow(()->new RuntimeException("Train not found"));
 
         coach.setTrain(train);
+
         return coachRepository.save(coach);
 
     }

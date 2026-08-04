@@ -1,23 +1,68 @@
-import React from 'react'
-import FareBox from '@/app/components/fareBox';
+import React from 'react';
 
-interface FareProps{
-    fare:string|null;
+interface FareProps {
+  fare: string | null;
 }
-const fareBox:React.FC<FareProps> = ({fare}) => {
+
+const FareBox: React.FC<FareProps> = ({ fare }) => {
   return (
-    <div className='shadow-md px-5 py-3 rounded-md space-y-5 '>
-        <p className='text-black font-medium font-sans'>Fare for the journey</p>
-        {
-            fare? (
-                <p className='text-black font-black font-mono'>LKR <span
-                className='text-5xl'>{fare}</span></p>
-            ):(
-                <p className='text-black font-black '>-</p>
-            )
-        }
-    </div>
-  )
-}
+    <div className="
+      w-full
+      bg-white
+      border border-gray-200
+      shadow-sm
+      hover:shadow-md
+      transition-shadow
+      duration-300
+      px-6
+      py-5
+      rounded-xl
+      space-y-4
+    ">
+      <p className="
+        text-gray-500
+        text-sm
+        font-medium
+        tracking-wide
+        uppercase
+      ">
+        Fare for the journey
+      </p>
 
-export default fareBox
+      {
+        fare ? (
+          <div className="flex items-baseline gap-2">
+            <span className="
+              text-gray-700
+              font-semibold
+              text-xl
+              font-sans
+            ">
+              LKR
+            </span>
+
+            <span className="
+              text-black
+              font-black
+              text-5xl
+              font-mono
+              tracking-tight
+            ">
+              {fare}
+            </span>
+          </div>
+        ) : (
+          <p className="
+            text-gray-400
+            text-4xl
+            font-bold
+          ">
+            -
+          </p>
+        )
+      }
+    </div>
+  );
+};
+
+export default FareBox;

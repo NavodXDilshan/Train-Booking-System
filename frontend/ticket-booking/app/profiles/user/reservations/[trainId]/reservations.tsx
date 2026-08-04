@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { use, useEffect, useState } from "react"
 import Menu from "@/app/components/dropdownmenu"
 import { ArrowRightIcon } from "@heroicons/react/24/solid"
 import { useParams } from "next/navigation"
@@ -82,6 +82,7 @@ export default function Reservations() {
   const [departure, setDeparture] = useState<Departure | null>(null);
   const [station, setStation] = useState<Station[] | null>([]);
   const [loading, setLoading] = useState(true)
+  const [isFiltering, setIsFiltering] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null)
   const [fare, setFare] = useState<string | null>(null);
   const [reservations, setReservations] = useState<Record<string, Passenger>>({})
@@ -181,7 +182,7 @@ export default function Reservations() {
       alert("Please choose your journey points, select a seat and fill all fields");
       return;
     }
-    
+
     const { coachId, seatId, seatNumber } = selectedSeat;
 
     const bookingData = {
@@ -192,11 +193,11 @@ export default function Reservations() {
       passengerName: form.name,
       passengerContact: form.contact,
       passengerNIC: form.nic,
-      originOrder:parsingStationOrder(origin),
-      destinationOrder:parsingStationOrder(destination),
-      travelDate:departure?.departureTime,
-      departureId:departure?.id,
-      direction:departure?.direction,
+      originOrder: parsingStationOrder(origin),
+      destinationOrder: parsingStationOrder(destination),
+      travelDate: departure?.departureTime,
+      departureId: departure?.id,
+      direction: departure?.direction,
     };
 
     try {
@@ -209,19 +210,18 @@ export default function Reservations() {
       });
 
       if (!response.ok) {
-        const errorText = await response.text();
-        alert(`Booking failed: ${errorText || response.statusText}`);
+        if (response.status === 409) {
+          const errorData = await response.json().catch(() => null);
+          alert(errorData?.message ?? "Seat already booked for this journey");
+        } else {
+          const errorText = await response.text().catch(() => "");
+          alert(`Booking failed: ${errorText || response.statusText}`);
+        }
         return;
       }
 
       const responseData = await response.json();
-      const qrData = responseData['qrToken'];
-
-      // // Only generate QR after successful response
-      // const qrData = JSON.stringify({
-      //   ...bookingData,
-      //   timestamp: new Date().toISOString(),
-      // });
+      const qrData = responseData["qrToken"];
 
       setQrValue(qrData);
       setShowQr(true);
@@ -230,7 +230,7 @@ export default function Reservations() {
         ...prev,
         [seatKey(coachId, seatId)]: {
           name: "Passenger",
-          contact:"xxx xxx xxxx" ,
+          contact: "xxx xxx xxxx",
           nic: "xxxx xxxx  xxxx",
         },
       }));
@@ -245,6 +245,7 @@ export default function Reservations() {
       alert("Some data missing to initiate filtering");
       return;
     }
+    setIsFiltering(true);
     setReservations({});
     const bookingRequest = {
       departureId:departureId,
@@ -265,7 +266,7 @@ export default function Reservations() {
 
       if (!response.ok) {
         const errorText = await response.text();
-        alert(`Seat filtering failed: ${errorText || response.statusText}`);
+        alert(`Seat booking failed: ${errorText || response.statusText}`);
         return;
       }
 
@@ -286,17 +287,12 @@ export default function Reservations() {
           }
         }))
       })
-      // setReservations((prev) => ({
-      //   ...prev,
-      //   [seatKey(coachId, seatId)]: {
-      //     name: form.name,
-      //     contact: form.contact,
-      //     nic: form.nic,
-      //   },
-      // }));
+
     } catch (error) {
       console.error("Seat filtering error:", error);
       alert("Something went wrong while filtering. Please try again.");
+    }finally{
+      setIsFiltering(false);
     }   
   }
 
@@ -323,11 +319,14 @@ export default function Reservations() {
 
   return (
     <div className="p-4 w-3/4 items-center justify-center ">
-      <h4 className="sm:text-[20px] text-[10px] font-medium text-black font-mono">
-        Reservation — {train.name}
-      </h4>
-
-      {/* Endpoint selector */}
+      <div className="flex flex-col gap-2">
+        <h4 className="sm:text-[20px] text-[10px] font-medium text-black font-mono">
+          Reservation — {train.name}
+        </h4>
+        <div className="font-mono text-black mb-3">
+          <p>Filter your seat availability before making the booking!</p>
+        </div>
+      </div>
       <div className="flex flex-row gap-5 items-center mt-4">
         <Menu
           select={origin}
@@ -351,29 +350,30 @@ export default function Reservations() {
         />
         <div>
           <button 
-            className="font-mono text-white font-bold bg-blue-400 px-5 py-2 rounded-md hover:bg-blue-300 cursor-pointer"
+            className="disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-mono text-white font-bold bg-blue-400 px-5 py-2 rounded-md hover:bg-blue-300 cursor-pointer"
             type="button"
+            disabled={isFiltering}
             onClick={()=>handleSeatFiltering(departure.id,departure.departureTime,origin,destination)}>
-            Filter
+            {isFiltering ? "Filtering..." : "Filter"}
           </button>
         </div>
       </div>
 
-      {/* Legend */}
-      <div className="flex items-center gap-4 mt-6 mb-4 text-sm">
-        <div className="flex items-center gap-2">
-          <div className="w-5 h-5 bg-green-500 rounded-sm" />
-          <span className="text-green-500 font-medium font-mono">Unreserved</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-5 h-5 bg-black rounded-sm" />
-          <span className="text-black font-medium font-mono">Reserved</span>
-        </div>
+      <div className="flex flex-row items-center  gap-4 mt-6 mb-4 text-sm">
+       
+          <div className="flex  items-center gap-2">
+            <div className="w-5 h-5 bg-green-500 rounded-sm" />
+            <span className="text-green-500 font-medium font-mono">Unreserved</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-5 h-5 bg-black rounded-sm" />
+            <span className="text-black font-medium font-mono">Reserved</span>
+          </div>
+      
       </div>
 
       <div className="flex flex-row items-start justify-between  w-full">
 
-        {/* Coaches */}
         <CoachList
           coaches={train.coaches}
           reservations={reservations}

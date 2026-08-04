@@ -17,7 +17,7 @@ export default function DeparturesTable({
     return `${station?.code}  (${station?.name})`;
   }
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto font-mono">
       <table className="min-w-full border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-500 text-white">

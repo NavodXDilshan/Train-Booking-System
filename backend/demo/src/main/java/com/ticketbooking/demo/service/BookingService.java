@@ -5,6 +5,7 @@ import com.ticketbooking.demo.dto.BookingDto;
 import com.ticketbooking.demo.dto.BookingFilterResponse;
 import com.ticketbooking.demo.dto.BookingRequest;
 import com.ticketbooking.demo.dto.BookingResponse;
+import com.ticketbooking.demo.exception.SeatAlreadyBookedException;
 import com.ticketbooking.demo.model.Booking;
 //import io.hypersistence.utils.hibernate.type.range.Range;
 import io.jsonwebtoken.Jwts;
@@ -78,7 +79,7 @@ public class BookingService {
             ).getBooking();
 
         }catch(DataIntegrityViolationException e){
-            throw new RuntimeException(
+            throw new SeatAlreadyBookedException(
                     "Seat already booked for this journey"
             );
         }
@@ -134,21 +135,5 @@ public class BookingService {
       }
     }
 
-//    private List<Range<Integer>> createJourneyRanges(
-//            int origin,
-//            int destination,
-//            int stationCount
-//    ) {
-//
-//        if(origin <= destination){
-//            return List.of(
-//                    Range.closed(origin, destination)
-//            );
-//        }
-//
-//        return List.of(
-//                Range.closed(origin, stationCount),
-//                Range.closed(0, destination)
-//        );
-//    }
+
 }

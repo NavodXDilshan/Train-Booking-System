@@ -15,7 +15,7 @@ export default function Home() {
       />
 
 
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen font-mono">
         <Link href="/profiles/user">
           <button
             type="button"
