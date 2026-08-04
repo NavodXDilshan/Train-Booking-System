@@ -31,7 +31,7 @@ export default function CoachList({ coaches, reservations, onSeatClick }: CoachL
 
   return (
     <div className="flex flex-col gap-8 w-2/3">
-      {coaches.map((coach) => (
+      {coaches.filter((coach) => coach.type === "RESERVED").map((coach) => (
         <div
           key={coach.id}
           className="border-2 border-gray-400 rounded-xl p-6 bg-gray-50 max-w-4xl"
