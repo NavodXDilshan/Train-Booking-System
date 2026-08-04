@@ -1,14 +1,10 @@
--- =========================================================
--- Trains
--- =========================================================
+
 CREATE TABLE trains (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
--- =========================================================
--- Stations
--- =========================================================
+
 CREATE TABLE stations (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -16,9 +12,7 @@ CREATE TABLE stations (
     route_order INTEGER NOT NULL
 );
 
--- =========================================================
--- Coaches
--- =========================================================
+
 CREATE TABLE coaches (
     id BIGSERIAL PRIMARY KEY,
     train_id BIGINT NOT NULL REFERENCES trains(id),
@@ -29,9 +23,7 @@ CREATE TABLE coaches (
     CONSTRAINT uq_train_coach_number UNIQUE (train_id, coach_number)
 );
 
--- =========================================================
--- Seats
--- =========================================================
+
 CREATE TABLE seats (
     id BIGSERIAL PRIMARY KEY,
     coach_id BIGINT NOT NULL REFERENCES coaches(id),
@@ -41,9 +33,7 @@ CREATE TABLE seats (
     CONSTRAINT uq_coach_seat_number UNIQUE (coach_id, seat_number)
 );
 
--- =========================================================
--- Fares
--- =========================================================
+
 CREATE TABLE fares (
     id BIGSERIAL PRIMARY KEY,
     base_fare NUMERIC(10,2) NOT NULL,
@@ -52,9 +42,7 @@ CREATE TABLE fares (
     coach_type VARCHAR(255) NOT NULL
 );
 
--- =========================================================
--- Departures
--- =========================================================
+
 CREATE TABLE departures (
     id BIGSERIAL PRIMARY KEY,
     train_id BIGINT NOT NULL REFERENCES trains(id),
@@ -65,9 +53,7 @@ CREATE TABLE departures (
     status VARCHAR(255) NOT NULL
 );
 
--- =========================================================
--- Bookings
--- =========================================================
+
 CREATE TABLE bookings (
     id BIGSERIAL PRIMARY KEY,
     seat_id BIGINT NOT NULL,
@@ -75,24 +61,16 @@ CREATE TABLE bookings (
     coach_id BIGINT NOT NULL,
     train_id BIGINT NOT NULL,
     departure_id BIGINT NOT NULL,
-
     passenger_name VARCHAR(255) NOT NULL,
     passenger_contact VARCHAR(255) NOT NULL,
     passenger_nic VARCHAR(255) NOT NULL,
-
     origin_order INTEGER NOT NULL,
     destination_order INTEGER NOT NULL,
-
     fare_amount NUMERIC(10,2) NOT NULL,
-
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
     travel_date TIMESTAMP NOT NULL,
-
     is_verified BOOLEAN DEFAULT false,
-
     direction VARCHAR(50) NOT NULL,
-
     journey_range int4range
 );
 
