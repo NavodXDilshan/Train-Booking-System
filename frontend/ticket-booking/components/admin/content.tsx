@@ -1,13 +1,13 @@
 import React from 'react'
-import TrainForm from "@/app/profiles/admin/forms/trains";
-import DepartureForm from "@/app/profiles/admin/forms/departures";
-import StationForm from '@/app/profiles/admin/forms/stations';
-import FareForm from '@/app/profiles/admin/forms/fares';
-import TrainList from '@/app/profiles/admin/lists/trainlist';
-import StationList from '@/app/profiles/admin/lists/stationlist';
-import DepartureList from '@/app/profiles/admin/lists/departurelist';
-import FareList from '@/app/profiles/admin/lists/farelist';
-import Bookinglist from '@/app/profiles/admin/lists/bookinglist';
+import TrainForm from "@/components/admin/forms/trains";
+import DepartureForm from "@/components/admin/forms/departures";
+import StationForm from '@/components/admin/forms/stations';
+import FareForm from '@/components/admin/forms/fares';
+import TrainList from '@/components/admin/lists/trainlist';
+import StationList from '@/components/admin/lists/stationlist';
+import DepartureList from '@/components/admin/lists/departurelist';
+import FareList from '@/components/admin/lists/farelist';
+import Bookinglist from '@/components/admin/lists/bookinglist';
 
 interface ContentProps{
     select:string;

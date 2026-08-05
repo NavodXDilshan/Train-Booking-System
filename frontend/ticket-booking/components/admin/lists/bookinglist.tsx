@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {getBookings} from "@/app/lib/bookings";
+import {getBookings} from "@/lib/bookings";
 
 type Direction = "FORWARD" | "REVERSE";
 
@@ -65,7 +65,7 @@ const bookinglist = () => {
 
     return (
     <div className="space-y-4 w-full font-mono">
-        <div className="w-full mb-6">
+        <div className="w-full mb-6 sticky top-0 z-50">
             <div className="rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 p-6 shadow-lg">
                 <div className="flex items-center justify-between">
                     <div>

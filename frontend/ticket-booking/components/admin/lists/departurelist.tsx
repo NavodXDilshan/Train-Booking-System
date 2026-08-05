@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { getDepartures } from "@/app/lib/departures";
-import { metadata } from '../../../layout';
+import { getDepartures } from "@/lib/departures";
+import { metadata } from '../../../app/layout';
 
 
 export interface Seat {

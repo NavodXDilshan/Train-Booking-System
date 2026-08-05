@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {getFares} from "@/app/lib/fare";
+import {getFares} from "@/lib/fare";
 
 interface Fare {
   id: number;

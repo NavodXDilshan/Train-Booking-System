@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
-import SideBar from "@/app/profiles/admin/sideBar";
-import Content from "@/app/profiles/admin/content";
+import SideBar from "@/components/admin/sideBar";
+import Content from "@/components/admin/content";
 
 const page = () => {
   const [select , setSelect] = useState<string>("trains");

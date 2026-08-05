@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getStations } from "@/app/lib/stations";
+import { getStations } from "@/lib/stations";
 
 interface Station {
   id: number;

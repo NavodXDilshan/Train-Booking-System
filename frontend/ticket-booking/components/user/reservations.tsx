@@ -1,14 +1,14 @@
 "use client"
 
 import React, { use, useEffect, useState } from "react"
-import Menu from "@/app/components/dropdownmenu"
+import Menu from "@/components/dropdownmenu"
 import { ArrowRightIcon } from "@heroicons/react/24/solid"
 import { useParams } from "next/navigation"
-import { getDepartureById } from "@/app/lib/departureById"
-import {getStations} from "@/app/lib/stations";
-import FareBox from "@/app/components/fareBox";
-import ReservationModal from "@/app/components/ReservationModal"
-import CoachList from "@/app/components/CoachList"
+import { getDepartureById } from "@/lib/departureById"
+import {getStations} from "@/lib/stations";
+import FareBox from "@/components/fareBox";
+import ReservationModal from "@/components/ReservationModal"
+import CoachList from "@/components/CoachList"
 
 interface Seat {
   id: number

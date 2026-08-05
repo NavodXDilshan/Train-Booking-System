@@ -1,6 +1,6 @@
 "use client"
 import {useState} from 'react';
-import NavBar from "@/app/navbar/page";
+import NavBar from "@/components/navbar/page";
 
 
 export default function({

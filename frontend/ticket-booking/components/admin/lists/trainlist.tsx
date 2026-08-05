@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { getTrains } from "@/app/lib/trains";
+import { getTrains } from "@/lib/trains";
 
 interface Seat {
   id: number;

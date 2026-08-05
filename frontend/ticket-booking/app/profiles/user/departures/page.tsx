@@ -1,6 +1,6 @@
-import { getDepartures } from "@/app/lib/departures";
-import DeparturesTable from "@/app/profiles/user/departures/DeparturesTable";
-import {getStations} from "@/app/lib/stations";
+import { getDepartures } from "@/lib/departures";
+import DeparturesTable from "@/components/user/DeparturesTable";
+import {getStations} from "@/lib/stations";
 
 export default async function DeparturesPage() {
   const departures = await getDepartures();

@@ -1,5 +1,5 @@
-import { Departure } from "@/app/lib/departures";
-import { Station } from "@/app/lib/stations";
+import { Departure } from "@/lib/departures";
+import { Station } from "@/lib/stations";
 import Link from "next/link";
 
 interface DeparturesTableProps {

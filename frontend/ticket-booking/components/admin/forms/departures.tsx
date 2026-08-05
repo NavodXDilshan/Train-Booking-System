@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { getStations } from "@/app/lib/stations";
-import { getTrains } from "@/app/lib/trains";
+import { getStations } from "@/lib/stations";
+import { getTrains } from "@/lib/trains";
 
 interface DepartureFormData {
   trainId: number

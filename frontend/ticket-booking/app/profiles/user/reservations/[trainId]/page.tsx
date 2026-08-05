@@ -1,5 +1,5 @@
 import React from 'react'
-import Reservation from './reservations'
+import Reservation from '@/components/user/reservations'
 
 const page = () => {
   return (
